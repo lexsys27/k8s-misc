@@ -49,4 +49,23 @@ kubectl apply -f dashboard.yaml
 
 kubectl get pods -n kube-system
 
+# How to schedule containers to the master node?
+kubectl taint nodes --all node-role.kubernetes.io/master-
+
+# Sample application deployment
+kubectl create namespace sock-shop
+kubectl apply -n sock-shop -f "https://github.com/microservices-demo/microservices-demo/blob/master/deploy/kubernetes/complete-demo.yaml?raw=true"
+
+# Find out the port application is listening
+kubectl -n sock-shop get svc front-end
+# 10.101.50.164:30001
+
+# Verify everything is running
+kubectl get pods -n sock-shop
+
+# How to do port forwarding on kalico playground?
+# Select menu item and type in the port number
+
+# Clean up the example application
+kubectl delete namespace sock-shop
 
